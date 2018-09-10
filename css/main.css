@@ -1,2 +1,78 @@
+@import url("https://fonts.googleapis.com/css?family=Archivo+Black|Raleway");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box; }
+  * li {
+    list-style-type: none; }
+
+#start, #start header {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex; }
+
+#start main .tagline {
+  font-family: "Archivo Black", sans-serif;
+  font-size: 3.5rem;
+  color: white;
+  text-transform: lowercase;
+  font-weight: normal; }
+
 body {
-  background: #000; }
+  overflow: hidden; }
+  body::-webkit-scrollbar {
+    display: none; }
+
+.body-container {
+  position: relative;
+  overflow: hidden;
+  transition: 1s cubic-bezier(0.5, 0, 0.5, 1); }
+  .body-container .page {
+    height: 100vh;
+    overflow: hidden; }
+    .body-container .page:nth-child(1) {
+      background: #fff; }
+    .body-container .page:nth-child(2) {
+      background: #dddddd; }
+    .body-container .page:nth-child(3) {
+      background: #777777; }
+    .body-container .page:nth-child(4) {
+      background: #444444; }
+    .body-container .page:nth-child(5) {
+      background: #000; }
+
+#start {
+  padding: 30px 30px 0;
+  flex-flow: column; }
+  #start main {
+    position: relative;
+    margin: 0 auto;
+    height: 80%;
+    width: 100%;
+    overflow: hidden;
+    background: url(../img/portrait.jpg) no-repeat;
+    background-size: cover;
+    background-position: 70%; }
+    #start main .tagline {
+      line-height: 4rem;
+      position: absolute;
+      bottom: 0;
+      padding: 20px; }
+      #start main .tagline span {
+        color: #ffc71f; }
+  #start header {
+    height: 20%;
+    justify-content: space-between;
+    align-items: center; }
+    #start header .logo {
+      width: 10%; }
+      #start header .logo svg {
+        width: 100%; }
+    #start header .arrow {
+      position: fixed;
+      right: 30px;
+      width: 50px;
+      background: #dddddd;
+      padding: 4px; }

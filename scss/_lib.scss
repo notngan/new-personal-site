@@ -1,0 +1,38 @@
+// Mixins
+@mixin cross($prop, $val){
+    -webkit-#{$prop}: $val;
+    -moz-#{$prop}: $val;
+    -ms-#{$prop}: $val;
+    -o-#{$prop}: $val;
+    #{$prop}: $val;
+}
+@mixin font-style($font-family, $size, $color, $text-transform, $weight: normal){
+	@if $font-family { font-family: $font-family; }
+	@if $size { font-size: $size; }
+	@if $color { color: $color; }
+	@if $text-transform { text-transform: $text-transform; }
+	@if $weight { font-weight: $weight; }
+}
+
+// Variables 
+
+$darkest: #444444;
+$darker: #777777;
+$dark: #dddddd;
+$shine: #ffc71f;
+
+$bold: 'Archivo Black', sans-serif;
+$thin: 'Raleway', sans-serif;
+
+// Placeholders
+%flex {
+    display: -webkit-box; 
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex; 
+    display: flex;
+}
+
+%heading {
+    @include font-style($bold, 3.5rem, white, lowercase);
+}

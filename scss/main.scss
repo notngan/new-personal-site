@@ -1,3 +1,68 @@
+@import url('https://fonts.googleapis.com/css?family=Archivo+Black|Raleway');
+@import 'reset';
+@import 'lib.scss';
+
 body {
-    background: #000;
+  overflow: hidden;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
+.body-container {
+  position: relative;
+  overflow: hidden;
+  transition: 1s cubic-bezier(0.5, 0, 0.5, 1);
+  .page {
+    height: 100vh;
+    overflow: hidden;
+    &:nth-child(1) { background: #fff; }
+    &:nth-child(2) { background: $dark; }
+    &:nth-child(3) { background: $darker; }
+    &:nth-child(4) { background: $darkest; }
+    &:nth-child(5) { background: #000; }
+  }
+}
+
+#start {
+  padding: 30px 30px 0;
+  @extend %flex;
+  flex-flow: column;
+  main {
+    position: relative;
+    margin: 0 auto;
+    height: 80%;
+    width: 100%;
+    overflow: hidden;
+    background: url(../img/portrait.jpg) no-repeat;
+    background-size: cover;
+    background-position: 70%;
+    .tagline {
+      line-height: 4rem;
+      @extend %heading; 
+      position: absolute;
+      bottom: 0;
+      padding: 20px; 
+      span {
+        color: $shine;
+      }
+    }
+  }
+  header {
+    height: 20%;
+    @extend %flex;
+    justify-content: space-between;
+    align-items: center;
+    .logo {
+      width: 10%;
+      svg { width: 100%; }
+    }
+    .arrow {
+      position: fixed;
+      right: 30px;
+      width: 50px;
+      background: $dark;
+      padding: 4px;
+    }
+  }
+}
+
