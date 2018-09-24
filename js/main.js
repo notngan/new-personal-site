@@ -1,43 +1,41 @@
-window.onload = function(){
-  const pages = document.querySelectorAll('.page').length;
-  let scdir = false;
-  let hold = false;
-
-  function _scrollY(obj) {
-    let stepLength, pageLength, page, step = 100;
-    const vh = window.innerHeight / 100;
-    const vmin = Math.min(window.innerHeight, window.innerWidth) / 100;
-    if ((this !== undefined && this.id === 'body-container') || (obj !== undefined && obj.id === 'body-container')){
-      page = this || obj;
-      pageLength = parseInt(page.offsetHeight / vh);
-    }
-    if (page === undefined) {
-      return;
-    }
-    pageLength = pageLength || parseInt(page.offsetHeight / vmin);
-    stepLength = parseInt(page.style.transform.replace('translateY(', ''));
-    if (scdir === 'up' && Math.abs(stepLength) < (pageLength - pageLength / pages)) {
-      stepLength = stepLength - step;
-    } else if (scdir === 'down' && stepLength < 0) {
-      stepLength = stepLength + step;
-    } else if (scdir === 'top') {
-      stepLength = 0;
-    }
-    if (hold === false) {
-      hold = true;
-      page.style.transform = `translateY(${stepLength}vh)`;
-      setTimeout(() => {
-        hold = false;
-      }, 1000);
-    }
-    console.log(scdir + ':' + stepLength + ':' + pageLength + ':' + (pageLength - pageLength / pages));
-  }
-  var container = document.getElementById('body-container');
-  container.style.transform = 'translateY(0)';
-  container.addEventListener('wheel', function(e) {
-    if(e.deltaY < 0) { scdir = 'down'; }
-    if(e.deltaY > 0) { scdir = 'up'; }
-    e.stopPropagation();
+$(document).ready(function(){
+  
+  // scroll to the section on navbar click 
+  $(".menu a[href*='#']").bind('click', function(e){
+    e.preventDefault();
+    let target = $(this).attr('href');
+    $('html, body').stop().animate({
+      scrollTop: $(target).offset().top    
+    }, 1000, function(){
+      location.hash = target;
+    });
+    return false;
   });
-  container.addEventListener('wheel', _scrollY);
-}
+
+
+  $(window).scroll(function(){
+    // parallax effect
+     let introPos =  $(window).scrollTop() / 3 + 'px';
+     let containerPos =  $(window).scrollTop() / 2.5 + 'px';
+    
+     $('#intro').css('transform', 'translateY(' + introPos + ')')
+     $('#about').css('transform', 'translateY(' + containerPos + ')')
+    var scrollDistance = $(window).scrollTop();
+
+    // hide aside at the first page
+    if (scrollDistance >= $('#intro').height()) {
+      $('aside').fadeIn();
+    } else {
+      $('aside').fadeOut();
+    }
+    
+    // add current class to navbar item
+    $('section').each(function(i) {
+      if($(this).position().top <= scrollDistance - 100) {
+        $('.menu a.current').removeClass('current');
+        $('.menu a').eq(i).addClass('current');
+      }
+      console.log($('section').position());
+    });
+  }).scroll();
+});

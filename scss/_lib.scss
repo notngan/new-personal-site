@@ -36,3 +36,17 @@ $thin: 'Raleway', sans-serif;
 %heading {
     @include font-style($bold, 3.5rem, white, lowercase);
 }
+
+%font-social {
+    @include font-style($thin, 0.9rem, $darkest, lowercase );
+}
+%font-nav {
+    @include font-style($bold, 3rem, $darkest, uppercase );
+}
+
+%font-h2 {
+    @include font-style($bold, 5rem, $darkest, normal );
+}
+%font-p {
+    @include font-style($thin, 3rem, $darker, normal );
+}
